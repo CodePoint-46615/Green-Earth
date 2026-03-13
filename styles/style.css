@@ -1,5 +1,18 @@
 /* font class  */
 .inter {
   font-family: "Inter", sans-serif;
- 
+
+}
+
+.hero-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 80px;
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    display: block;
+  }
+  
 }
