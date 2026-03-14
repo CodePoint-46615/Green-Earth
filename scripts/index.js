@@ -20,7 +20,7 @@ displayCategory = (allCategoryData) => {
     const parentContainer = document.getElementById("choose-tree-menu");
     parentContainer.innerHTML =
         `
-        <li class="menu bg-base-200 rounded-box w-20 md:w-56">
+        <li class="menu bg-base-200 rounded-box w-full md:w-56 bg-[#F0FDF4]">
         <a>All Trees</a>
         </li>
         
@@ -32,7 +32,7 @@ displayCategory = (allCategoryData) => {
         const childElement = document.createElement("ul");
         childElement.innerHTML =
         `
-        <ul class="menu bg-base-200 rounded-box w-30 md:w-56">
+        <ul class="menu bg-base-200 rounded-box w-full md:w-56 bg-[#F0FDF4]">
             <li class=""><a>${id}</a></li>
         </ul>
         

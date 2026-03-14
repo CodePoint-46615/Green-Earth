@@ -41,7 +41,7 @@
   </head>
 
   <!-- body starts here -->
-  <body>
+  <body class="bg-[#F0FDF4]">
     <!-- nav bar section -->
     <nav class="navbar bg-base-100 shadow-sm bg-[#15803D] inter md:px-20">
       <!-- logo part -->
@@ -136,41 +136,66 @@
       </section>
 
       <!-- choose tree section -->
-      <section class="choose-tree inter">
-        <div class="mt-[100px] max-w-[1200px] mx-auto">
-          <!-- choose-tree-title -->
-          <h2
-            class="choose-tree-title text-center font-semibold text-[32px] mb-10"
-          >
-            Choose Your Tree
-          </h2>
+      <section class="choose-tree inter mt-[100px]">
+        <!-- choose-tree-title -->
+        <h2
+          class="choose-tree-title text-center font-semibold text-[32px] mb-10"
+        >
+          Choose Your Tree
+        </h2>
 
-          <!-- choose tree content section -->
+        <!-- choose tree content menu & card section -->
+        <div
+          id="choose-tree-content"
+          class="choose-tree-content flex flex-col md:flex-row justify-center items-start max-w-7xl mx-auto"
+        >
+          <!-- choose-tree-menu -->
+          <div class="shrink-0 mx-auto md:block">
+            <h2 class="font-semibold text-[20px] mb-4 text-center md:text-left">
+              Categories
+            </h2>
+            <div
+              id="choose-tree-menu"
+              class="grid grid-cols-2 md:block gap-4 w-full mx-auto"
+            ></div>
+          </div>
+
+          <!-- choose-tree-card section -->
           <div
-            class="choose-tree-content flex flex-col md:flex-row justify-between items-center gap-[30px]"
+            id="tree-card-container"
+            class="detail-slider grid grid-cols-1 md:grid-cols-3 gap-[30px] flex-1 my-[30px] md:my-0"
           >
-            <!-- choose-tree-menu -->
-            <div class="">
-              <h2
-                class="font-semibold text-[20px] mb-4 text-center md:text-left"
+            <!-- card -->
+            <div
+              id="tree-card"
+              class="shadow-sm p-4 bg-white space-y-4 w-full h-full"
+            >
+              <img class="" src="./assets/hero-leaf1.png" alt="" />
+              <h2 class="name font-semibold text-[14px]">Mango Tree</h2>
+              <p class="description font-normal text-[12px] text-[#71717A]">
+                A fast-growing tropical tree that produces delicious, juicy
+                mangoes during summer. Its dense green
+              </p>
+              <div class="flex justify-between items-center">
+                <span
+                  class="category bg-[#DCFCE7] text-[#15803D] py-1 px-3 rounded-[400px]"
+                  >Fruit Tree</span
+                >
+                <h2 class="font-semibold text-[14px]">৳500</h2>
+              </div>
+              <button
+                class="btn btn-success bg-[#15803D] text-white w-full inter font-medium text-[16px] rounded-[999px]"
               >
-                Categories
-              </h2>
-              <div
-                id="choose-tree-menu"
-                class="grid grid-cols-2 gap-10 w-full md:block"
-              ></div>
+                Add to Cart
+              </button>
             </div>
+          </div>
 
-            <!-- card section -->
-            <div class="detail-slider border">
-              <h2>HI</h2>
-            </div>
-
-            <!-- cart section -->
-            <div class="cart border">
-              <h2>HI</h2>
-            </div>
+          <!-- choose-tree-cart section -->
+          <div
+            class="cart shadow-lg w-full shrink-0 md:w-[250px] p-3 h-full mx-auto bg-white"
+          >
+            <h2>Your Cart</h2>
           </div>
         </div>
       </section>
