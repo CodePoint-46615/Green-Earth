@@ -30,18 +30,22 @@ displayCategory = (allCategoryData) => {
     document.getElementById("all-tree").addEventListener("click", loadAllTree);
 
     allCategoryData.forEach(element => {
-        const id = element.category_name;
+        const id = element.id;
+        const categoryName = element.category_name;
+
 
         const childElement = document.createElement("ul");
         childElement.innerHTML =
             `
         <ul class="menu bg-base-200 rounded-box w-full md:w-56 bg-[#F0FDF4]">
-            <li class=""><a>${id}</a></li>
+            <li id="${categoryName}-menu-bar"><a>${categoryName}</a></li>
         </ul>
         
         `;
 
         parentContainer.appendChild(childElement);
+        document.getElementById(`${categoryName}-menu-bar`).addEventListener("click", () => loadCategoryTree(id)); 
+
     });
 }
 
@@ -77,8 +81,8 @@ const displayAllTree = (trees) => {
         const imageURL = tree.image;
         const treeName = tree.name;
         const treeDescription = tree.description;
-        const treeCategory = tree.category; 
-        const treePrice = tree.price; 
+        const treeCategory = tree.category;
+        const treePrice = tree.price;
 
         const childContainer = document.createElement("div");
         childContainer.innerHTML =
@@ -108,12 +112,23 @@ const displayAllTree = (trees) => {
         
         `;
 
-        parentContainer.appendChild(childContainer); 
+        parentContainer.appendChild(childContainer);
 
     });
 
 }
 
-loadAllTree(); 
+loadAllTree();
 
- 
+
+//////////////////////////// Load by Category \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+const loadCategoryTree = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/category/${id}`; 
+    // console.log(url); 
+
+    const res = await fetch(url);
+    const data = await res.json();
+    displayAllTree(data.plants);   
+}
+
