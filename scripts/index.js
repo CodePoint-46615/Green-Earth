@@ -1,3 +1,4 @@
+//////////////////////////// Category Section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const loadCategory = () => {
     const url = "https://openapi.programming-hero.com/api/categories";
 
@@ -20,18 +21,20 @@ displayCategory = (allCategoryData) => {
     const parentContainer = document.getElementById("choose-tree-menu");
     parentContainer.innerHTML =
         `
-        <li class="menu bg-base-200 rounded-box w-full md:w-56 bg-[#F0FDF4]">
+        <li id="all-tree" class="menu bg-base-200 rounded-box w-full md:w-56 bg-[#F0FDF4]">
         <a>All Trees</a>
         </li>
         
     `;
+
+    document.getElementById("all-tree").addEventListener("click", loadAllTree);
 
     allCategoryData.forEach(element => {
         const id = element.category_name;
 
         const childElement = document.createElement("ul");
         childElement.innerHTML =
-        `
+            `
         <ul class="menu bg-base-200 rounded-box w-full md:w-56 bg-[#F0FDF4]">
             <li class=""><a>${id}</a></li>
         </ul>
@@ -42,4 +45,75 @@ displayCategory = (allCategoryData) => {
     });
 }
 
-loadCategory(); 
+loadCategory();
+
+//////////////////////////// All tree Section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+const loadAllTree = async () => {
+    const url = "https://openapi.programming-hero.com/api/plants";
+
+    const res = await fetch(url)
+    const data = await res.json();
+    // console.log(data.plants);
+    displayAllTree(data.plants);
+}
+
+const displayAllTree = (trees) => {
+    // console.log(trees);
+    const parentContainer = document.getElementById("tree-card-container");
+    parentContainer.innerHTML = "";
+
+    // {
+    //     "id": 1,
+    //     "image": "https://i.ibb.co.com/cSQdg7tf/mango-min.jpg",
+    //     "name": "Mango Tree",
+    //     "description": "A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green canopy offers shade, while its sweet fruits are rich in vitamins and minerals.",
+    //     "category": "Fruit Tree",
+    //     "price": 500
+    // }
+
+    trees.forEach(tree => {
+        // console.log(tree);
+        // Accessing Elements
+        const imageURL = tree.image;
+        const treeName = tree.name;
+        const treeDescription = tree.description;
+        const treeCategory = tree.category; 
+        const treePrice = tree.price; 
+
+        const childContainer = document.createElement("div");
+        childContainer.innerHTML =
+            `
+         <div
+              id="tree-card"
+              class="shadow-sm p-4 bg-white space-y-4 w-full h-full"
+            >
+              <img class="w-full h-[186px] object-cover rounded-md" src="${imageURL}" alt="" />
+              <h2 class="name font-semibold text-[14px]">${treeName}</h2>
+              <p class="description font-normal text-[12px] text-[#71717A]">
+               ${treeDescription}
+              </p>
+              <div class="flex justify-between items-center">
+                <span
+                  class="category bg-[#DCFCE7] text-[#15803D] py-1 px-3 rounded-[400px]"
+                  >${treeCategory}</span
+                >
+                <h2 class="font-semibold text-[14px]">৳${treePrice}</h2>
+              </div>
+              <button
+                class="btn btn-success bg-[#15803D] text-white w-full inter font-medium text-[16px] rounded-[999px]"
+              >
+                Add to Cart
+              </button>
+            </div>
+        
+        `;
+
+        parentContainer.appendChild(childContainer); 
+
+    });
+
+}
+
+loadAllTree(); 
+
+ 
