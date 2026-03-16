@@ -72,9 +72,9 @@ const loadAllTree = async () => {
     const res = await fetch(url)
     const data = await res.json();
     // console.log(data.plants);
+   
     displayAllTree(data.plants);
-
-    highlightAllTree();
+     highlightAllTree();
 }
 
 const displayAllTree = (trees) => {
@@ -146,23 +146,20 @@ const loadCategoryTree = async (id) => {
     const res = await fetch(url);
     const data = await res.json();
 
-    // remove active section 
+    // Active Buttons Sections 
     removeActive();
     const clickBtn = document.getElementById(`${id}-menu-bar`);
     // // console.log(clickBtn); 
     clickBtn.classList.add("bg-[#15803D]", "text-white");
 
+
     displayAllTree(data.plants);
 }
 
+// Active button all tree section
 const highlightAllTree = () => {
+    removeActive();
     const allTreeBtn = document.getElementById("all-tree");
-
-    if (loadAllTree) {
-        allTreeBtn.classList.add("bg-[#15803D]", "text-white");
-    }
-    else if (loadCategoryTree) {
-        allTreeBtn.classList.remove("bg-[#15803D]", "text-white");
-    }
-}
+    allTreeBtn.classList.add("bg-[#15803D]", "text-white");
+};
 
