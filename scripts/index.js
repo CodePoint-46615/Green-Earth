@@ -1,3 +1,8 @@
+//////////////////////////// Array \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+let allTree = [];
+const cartItems = [];
+
+
 //////////////////////////// Helper Function \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const removeActive = () => {
     const menuBtn = document.querySelectorAll(".menu-btn");
@@ -6,6 +11,15 @@ const removeActive = () => {
     });
 }
 
+const calculateTotal = () => {
+    let total = 0;
+    cartItems.forEach(item => {
+        total += item.price;
+    });
+
+    // console.log(total);
+    return total;
+}
 
 //////////////////////////// Category Section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const loadCategory = () => {
@@ -72,13 +86,16 @@ const loadAllTree = async () => {
     const res = await fetch(url)
     const data = await res.json();
     // console.log(data.plants);
-   
+
     displayAllTree(data.plants);
-     highlightAllTree();
+    highlightAllTree();
 }
+
 
 const displayAllTree = (trees) => {
     // console.log(trees);
+    allTree = trees;
+    // console.log(allTree); 
     const parentContainer = document.getElementById("tree-card-container");
     parentContainer.innerHTML = "";
 
@@ -99,6 +116,7 @@ const displayAllTree = (trees) => {
         const treeDescription = tree.description;
         const treeCategory = tree.category;
         const treePrice = tree.price;
+        const treeId = tree.id;
 
         const childContainer = document.createElement("div");
         childContainer.innerHTML =
@@ -119,7 +137,7 @@ const displayAllTree = (trees) => {
                 >
                 <h2 class="font-semibold text-[14px]">৳${treePrice}</h2>
               </div>
-              <button
+              <button onclick="addToCart(${treeId})"
                 class="btn btn-success bg-[#15803D] text-white w-full inter font-medium text-[16px] rounded-[999px]"
               >
                 Add to Cart
@@ -163,3 +181,64 @@ const highlightAllTree = () => {
     allTreeBtn.classList.add("bg-[#15803D]", "text-white");
 };
 
+//////////////////////////// Add to cart  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+const addToCart = (id) => {
+    const product = allTree.find((tree) =>
+        tree.id === id
+    );
+    // console.log(product); 
+
+    cartItems.push(product);
+    // console.log(cartItems); 
+
+    const parentContainer = document.getElementById("cart-card-container");
+    parentContainer.innerHTML = "";
+
+    cartItems.forEach(item => {
+        // console.log(item.name); 
+
+        const childElement = document.createElement("div");
+        childElement.innerHTML =
+            `
+            <div
+                class="cart-details flex justify-between items-center bg-[#F0FDF4] py-2 px-3 mb-2"
+              >
+                <div class="details-1">
+                  <h2 class="font-semibold text-[14px] text-[#1F2937]">
+                    ${item.name}
+                  </h2>
+                  <p class="font-normal text-[16px] text-[#1F2937]">
+                    ৳<span>${item.price}</span> x 1
+                  </p>
+                </div>
+                <div class="details-2">
+                  <i
+                    class="fa-solid fa-xmark hover:cursor-pointer text-[#8C8C8C]"
+                  ></i>
+                </div>
+              </div>
+        `;
+
+        parentContainer.appendChild(childElement);
+    });
+
+    totalSectionRender();
+}
+
+const totalSectionRender = () => {
+    const parentContainer = document.getElementById("calculate-total-details");
+    parentContainer.innerHTML = "";
+
+    const childElement = document.createElement("div");
+    childElement.innerHTML =
+        `
+       <div
+            class="total-div flex justify-between items-center text-[#1F2937] font-medium text-[16px]"
+        >
+            <h2>Total:</h2>
+            <p>৳<span>${calculateTotal()}</span></p>
+        </div>
+    `;
+
+    parentContainer.appendChild(childElement);
+}
