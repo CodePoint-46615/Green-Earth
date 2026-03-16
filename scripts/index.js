@@ -1,3 +1,12 @@
+//////////////////////////// Helper Function \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+const removeActive = () => {
+    const menuBtn = document.querySelectorAll(".menu-btn");
+    menuBtn.forEach((btn) => {
+        btn.classList.remove("bg-[#15803D]", "text-white");
+    });
+}
+
+
 //////////////////////////// Category Section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const loadCategory = () => {
     const url = "https://openapi.programming-hero.com/api/categories";
@@ -8,6 +17,7 @@ const loadCategory = () => {
             // console.log(data.categories); 
             displayCategory(data.categories);
         });
+
 }
 
 // {
@@ -21,11 +31,13 @@ displayCategory = (allCategoryData) => {
     const parentContainer = document.getElementById("choose-tree-menu");
     parentContainer.innerHTML =
         `
-        <li id="all-tree" class="menu bg-base-200 rounded-box w-full md:w-56 bg-[#F0FDF4]">
-        <a>All Trees</a>
-        </li>
-        
-    `;
+        <ul class="menu bg-base-200 rounded-box w-full md:w-56 bg-[#F0FDF4]">
+            <li>
+                <a id="all-tree" class="hover:bg-green-800 hover:text-white menu-btn">All Trees</a>
+            </li>
+        </ul>
+            
+        `;
 
     document.getElementById("all-tree").addEventListener("click", loadAllTree);
 
@@ -38,13 +50,15 @@ displayCategory = (allCategoryData) => {
         childElement.innerHTML =
             `
         <ul class="menu bg-base-200 rounded-box w-full md:w-56 bg-[#F0FDF4]">
-            <li id="${categoryName}-menu-bar"><a>${categoryName}</a></li>
+            <li>
+                <a id="${id}-menu-bar" class="hover:bg-green-800 hover:text-white menu-btn">${categoryName}</a>
+            </li>
         </ul>
         
         `;
 
         parentContainer.appendChild(childElement);
-        document.getElementById(`${categoryName}-menu-bar`).addEventListener("click", () => loadCategoryTree(id)); 
+        document.getElementById(`${id}-menu-bar`).addEventListener("click", () => loadCategoryTree(id));
 
     });
 }
@@ -59,6 +73,8 @@ const loadAllTree = async () => {
     const data = await res.json();
     // console.log(data.plants);
     displayAllTree(data.plants);
+
+    highlightAllTree();
 }
 
 const displayAllTree = (trees) => {
@@ -93,7 +109,7 @@ const displayAllTree = (trees) => {
             >
               <img class="w-full h-[186px] object-cover rounded-md" src="${imageURL}" alt="" />
               <h2 class="name font-semibold text-[14px]">${treeName}</h2>
-              <p class="description font-normal text-[12px] text-[#71717A]">
+              <p class="description font-normal text-[12px] text-[#71717A] w-full">
                ${treeDescription}
               </p>
               <div class="flex justify-between items-center">
@@ -124,11 +140,29 @@ loadAllTree();
 //////////////////////////// Load by Category \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 const loadCategoryTree = async (id) => {
-    const url = `https://openapi.programming-hero.com/api/category/${id}`; 
+    const url = `https://openapi.programming-hero.com/api/category/${id}`;
     // console.log(url); 
 
     const res = await fetch(url);
     const data = await res.json();
-    displayAllTree(data.plants);   
+
+    // remove active section 
+    removeActive();
+    const clickBtn = document.getElementById(`${id}-menu-bar`);
+    // // console.log(clickBtn); 
+    clickBtn.classList.add("bg-[#15803D]", "text-white");
+
+    displayAllTree(data.plants);
+}
+
+const highlightAllTree = () => {
+    const allTreeBtn = document.getElementById("all-tree");
+
+    if (loadAllTree) {
+        allTreeBtn.classList.add("bg-[#15803D]", "text-white");
+    }
+    else if (loadCategoryTree) {
+        allTreeBtn.classList.remove("bg-[#15803D]", "text-white");
+    }
 }
 
