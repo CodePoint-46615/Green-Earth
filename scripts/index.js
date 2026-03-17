@@ -21,6 +21,17 @@ const calculateTotal = () => {
     return total;
 }
 
+const manageSpinner = (status) => {
+    if(status === true){
+        document.getElementById("spinner").classList.remove("hidden"); 
+        document.getElementById("tree-card-container").classList.add("hidden"); 
+    }
+    else{
+        document.getElementById("spinner").classList.add("hidden"); 
+        document.getElementById("tree-card-container").classList.remove("hidden");
+    }
+}
+
 //////////////////////////// Category Section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const loadCategory = () => {
     const url = "https://openapi.programming-hero.com/api/categories";
@@ -81,6 +92,7 @@ loadCategory();
 
 //////////////////////////// All tree Section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const loadAllTree = async () => {
+    manageSpinner(true); 
     const url = "https://openapi.programming-hero.com/api/plants";
 
     const res = await fetch(url)
@@ -150,6 +162,8 @@ const displayAllTree = (trees) => {
 
     });
 
+    manageSpinner(false); 
+    return; 
 }
 
 loadAllTree();
@@ -158,6 +172,7 @@ loadAllTree();
 //////////////////////////// Load by Category \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 const loadCategoryTree = async (id) => {
+    manageSpinner(true); 
     const url = `https://openapi.programming-hero.com/api/category/${id}`;
     // console.log(url); 
 
