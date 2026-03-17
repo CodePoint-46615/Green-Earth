@@ -191,6 +191,10 @@ const addToCart = (id) => {
     cartItems.push(product);
     // console.log(cartItems); 
 
+    addToCartUI();
+}
+
+const addToCartUI = () => {
     const parentContainer = document.getElementById("cart-card-container");
     parentContainer.innerHTML = "";
 
@@ -212,8 +216,8 @@ const addToCart = (id) => {
                   </p>
                 </div>
                 <div class="details-2">
-                  <i
-                    class="fa-solid fa-xmark hover:cursor-pointer text-[#8C8C8C]"
+                  <i 
+                    class="fa-solid fa-xmark hover:cursor-pointer text-[#8C8C8C] cart-x-mark" data-id="${item.id}"
                   ></i>
                 </div>
               </div>
@@ -242,3 +246,22 @@ const totalSectionRender = () => {
 
     parentContainer.appendChild(childElement);
 }
+
+// cancel cart functionality
+document.getElementById("cart-card-container").addEventListener("click", (e) => {
+    if (e.target.classList.contains("cart-x-mark")) {
+        const id = parseInt(e.target.dataset.id);;
+        // console.log(id);
+
+        // remove item from cart
+        const index = cartItems.findIndex(item => item.id === id);
+        if (index !== -1) {
+            cartItems.splice(index, 1);
+        }
+
+        // re-render
+        addToCartUI();
+
+    }
+});
+
