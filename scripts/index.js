@@ -22,12 +22,12 @@ const calculateTotal = () => {
 }
 
 const manageSpinner = (status) => {
-    if(status === true){
-        document.getElementById("spinner").classList.remove("hidden"); 
-        document.getElementById("tree-card-container").classList.add("hidden"); 
+    if (status === true) {
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("tree-card-container").classList.add("hidden");
     }
-    else{
-        document.getElementById("spinner").classList.add("hidden"); 
+    else {
+        document.getElementById("spinner").classList.add("hidden");
         document.getElementById("tree-card-container").classList.remove("hidden");
     }
 }
@@ -92,7 +92,7 @@ loadCategory();
 
 //////////////////////////// All tree Section \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 const loadAllTree = async () => {
-    manageSpinner(true); 
+    manageSpinner(true);
     const url = "https://openapi.programming-hero.com/api/plants";
 
     const res = await fetch(url)
@@ -138,7 +138,7 @@ const displayAllTree = (trees) => {
               class="shadow-sm p-4 bg-white space-y-4 w-full h-full"
             >
               <img class="w-full h-[186px] object-cover rounded-md" src="${imageURL}" alt="" />
-              <h2 class="name font-semibold text-[14px]">${treeName}</h2>
+              <h2 class="tree-name font-semibold text-[14px] hover:cursor-pointer" data-id="${treeId}">${treeName}</h2>
               <p class="description font-normal text-[12px] text-[#71717A] w-full">
                ${treeDescription}
               </p>
@@ -150,7 +150,7 @@ const displayAllTree = (trees) => {
                 <h2 class="font-semibold text-[14px]">৳${treePrice}</h2>
               </div>
               <button onclick="addToCart(${treeId})"
-                class="btn btn-success bg-[#15803D] text-white w-full inter font-medium text-[16px] rounded-[999px]"
+                class="btn btn-success bg-[#15803D] hover:bg-green-500 text-white w-full inter font-medium text-[16px] rounded-[999px]"
               >
                 Add to Cart
               </button>
@@ -159,20 +159,18 @@ const displayAllTree = (trees) => {
         `;
 
         parentContainer.appendChild(childContainer);
-
     });
 
-    manageSpinner(false); 
-    return; 
+    manageSpinner(false);
+    return;
 }
 
 loadAllTree();
 
 
 //////////////////////////// Load by Category \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
 const loadCategoryTree = async (id) => {
-    manageSpinner(true); 
+    manageSpinner(true);
     const url = `https://openapi.programming-hero.com/api/category/${id}`;
     // console.log(url); 
 
@@ -265,7 +263,7 @@ const totalSectionRender = () => {
 // cancel cart functionality
 document.getElementById("cart-card-container").addEventListener("click", (e) => {
     if (e.target.classList.contains("cart-x-mark")) {
-        const id = parseInt(e.target.dataset.id);;
+        const id = parseInt(e.target.dataset.id);
         // console.log(id);
 
         // remove item from cart
@@ -276,7 +274,41 @@ document.getElementById("cart-card-container").addEventListener("click", (e) => 
 
         // re-render
         addToCartUI();
-
     }
 });
+
+//////////////////////////// Modal  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+document.getElementById("tree-card-container").addEventListener("click", (e) => {
+    if (e.target.classList.contains("tree-name")) {
+        const id = parseInt(e.target.dataset.id);
+
+        const my_modal_5 = document.getElementById("my_modal_5");
+        my_modal_5.showModal();
+
+        modalUI(id); // now you have the clicked tree id
+    }
+});
+
+const modalUI = (id) => {
+    const treeDetails = allTree.find((tree) =>
+        tree.id === id
+    );
+    // console.log(treeDetails.name); 
+
+    const parentContainer = document.getElementById("modal-container");
+    parentContainer.innerHTML = "";
+
+    const childContainer = document.createElement("div");
+    childContainer.innerHTML =
+        `
+        <h3 class="text-2xl font-bold mb-5">${treeDetails.name}</h3>
+        <img src="${treeDetails.image}" alt="" class="mb-2 w-full h-[200px] object-cover rounded-md">
+        <h2 class="font-bold mb-2">Category: <span class="font-normal">${treeDetails.category}</span></h2>
+        <h2 class="font-bold mb-2">Price: <span class="font-normal">৳${treeDetails.price}</span></h2>
+        <p class="font-bold ">Description: <span class="font-normal">${treeDetails.description}</span></p>
+    
+    `;
+
+    parentContainer.appendChild(childContainer); 
+}
 
