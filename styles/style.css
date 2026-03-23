@@ -1,4 +1,9 @@
 /* font class  */
+#donation-form{
+  text-decoration: none;
+  border: none;
+}
+
 .inter {
   font-family: "Inter", sans-serif;
 }
