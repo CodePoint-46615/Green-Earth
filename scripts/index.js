@@ -165,7 +165,7 @@ const displayAllTree = (trees) => {
     return;
 }
 
-loadAllTree();
+// loadAllTree();
 
 
 //////////////////////////// Load by Category \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

@@ -19,6 +19,7 @@
     />
 
     <!-- font integration -->
+    <!-- inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -208,13 +209,15 @@
 
       <!-- about campaign section -->
       <section class="inter mx-auto">
-        <h2 class="text-center font-semibold text-[32px] mt-25 mb-10">About the Campaign</h2>
+        <h2 class="text-center font-semibold text-[32px] mt-25 mb-10">
+          About the Campaign
+        </h2>
         <div
-          class="about-content-container max-w-11/12 mx-auto flex justify-center items-center gap-[30px]"
+          class="about-content-container max-w-11/12 mx-auto flex flex-col md:flex-row justify-center items-center gap-[30px]"
         >
           <img src="./assets/about.png" alt="" />
           <div class="text">
-            <p class="w-[530px]">
+            <p class="w-full md:w-[530px]">
               Green Earth is a global tree plantation initiative dedicated to
               fighting climate change. Since our start, we’ve planted over
               500,000 trees worldwide. By joining our campaign, you help restore
@@ -225,6 +228,48 @@
               <li>Improvement of air quality</li>
               <li>Support for local communities</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Impact Section -->
+      <section class="inter bg-[#CFF0DC] mt-25 py-25 px-[135px]">
+        <h2
+          class="text-center mb-[40px] font-semibold text-[32px] text-[#1F2937]"
+        >
+          Our Impact
+        </h2>
+
+        <!-- card container -->
+        <div
+          class="impact-card-container grid grid-cols-1 md:grid-cols-3 gap-[50px]"
+        >
+          <!-- card-1 -->
+          <div
+            class="card-1 shadow-md bg-white rounded-[12px] p-10 text-center"
+          >
+            <h2 class="font-semibold text-[32px] text-[#15803D]">500K+</h2>
+            <p class="font-normal text-[16px] text-[#1F2937]">Trees Planted</p>
+          </div>
+
+          <!-- card-2 -->
+          <div
+            class="card-2 shadow-md bg-white rounded-[12px] p-10 text-center"
+          >
+            <h2 class="font-semibold text-[32px] text-[#15803D]">120+</h2>
+            <p class="font-normal text-[16px] text-[#1F2937]">
+              Communities Involved
+            </p>
+          </div>
+
+          <!-- card-3 -->
+          <div
+            class="card-3 shadow-md bg-white rounded-[12px] p-10 text-center"
+          >
+            <h2 class="font-semibold text-[32px] text-[#15803D]">30+</h2>
+            <p class="font-normal text-[16px] text-[#1F2937]">
+              Countries Reached
+            </p>
           </div>
         </div>
       </section>
