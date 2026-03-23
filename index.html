@@ -275,36 +275,42 @@
       </section>
 
       <!-- plant tree form -->
-      <section class="inter bg-[#166534] py-[100px] px-[635px]">
+      <section class="inter bg-[#166534] py-[100px] px-4 md:px-[635px]">
         <h2 class="text-white text-center font-semibold text-[32px] mb-[40px]">
           Plant a Tree Today
         </h2>
-        <form id="donation-form"
-          class="no-underline grid grid-cols-1 gap-3 bg-[#15803D] p-[40px] mx-auto rounded-[10px]"
+        <form
+          id="donation-form"
+          class="grid grid-cols-1 gap-3 bg-[#15803D] p-[40px] max-w-[600px] mx-auto rounded-[10px]"
         >
           <input
             type="text"
             name="name-fld"
             id=""
             placeholder="Your Name"
-            class="bg-white w-full h-full p-3"
+            class="bg-white w-full p-3 rounded-[6px] outline-none border-none"
           />
           <input
             type="email"
             name="email-fld"
             id=""
             placeholder="Your Email Address"
-            class="bg-white w-full h-full p-3"
+            class="bg-white w-full p-3 rounded-[6px] border-none outline-none"
           />
-          <input
-            type=""
+          <select
             name="number-of-tree-fld"
             id=""
-            placeholder="Your Name"
-            class="bg-white w-full h-full p-3"
-          />
+            class="bg-white w-full p-3 rounded-[6px] border-none outline-none"
+          >
+            <option value="" disabled selected>Number of Trees</option>
+            <option value="1">1 Tree</option>
+            <option value="3">3 Tree</option>
+            <option value="5">5 Tree</option>
+            <option value="10">10 Tree</option>
+            <option value="25">25 Tree</option>
+          </select>
           <button
-            class="bg-[#FACC15] hover:bg-[#FACC15]/80 rounded-[999px] w-full h-full p-3 hover:cursor-pointer text-[#15803D]"
+            class="bg-[#FACC15] hover:bg-[#FACC15]/80 rounded-[999px] w-full p-3 hover:cursor-pointer text-[#15803D]"
           >
             Donate Now
           </button>
@@ -313,7 +319,9 @@
     </main>
 
     <!-- footer section -->
-    <footer></footer>
+    <footer class="inter bg-[#14532D]">
+      <h2 class="text-white text-center font-normal text-[16px] py-6">© 2025 Green Earth. All Rights Reserved.</h2>
+    </footer>
 
     <!-- scripts -->
     <script src="./scripts/index.js"></script>
