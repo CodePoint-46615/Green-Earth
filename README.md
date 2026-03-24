@@ -4,19 +4,25 @@
 | Value assign | legacy way of declaring variable | can be reassigned with a new value | can not be reassigned with a new value |
 | Scope | Scope Specific (portion of code within a function or global scope) | block specific (portion of code within curly braces {} [e.g., inside a function, loop, or conditional statement] ) | block specific | 
 
-
-
+---
 #### 2) What is the difference between map(), forEach(), and filter()? 
+**map :** call a defined callback function on each element of an array and returns a new array that contains the result - without modifying the original one. 
 
+**foreach :** call a defined callback function on each element of an array but do not return any result.
+
+**filter :** call a defined callback function on each element of an array and filter them based on a condition and return a new array where the callback returns true.
+
+---
 #### 3) What are arrow functions in ES6?
 
+---
 #### 4) How does destructuring assignment work in ES6?
 
+---
 #### 5) Explain template literals in ES6. How are they different from string concatenation?
 
-
+---
 ## 🔗 Submission
 - **Live Link :** YOUR_DEPLOYED_URL_HERE  
 - **GitHub Private Repository:** YOUR_REPO_URL_HERE  
-
 ---
