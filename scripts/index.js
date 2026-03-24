@@ -202,7 +202,7 @@ const addToCart = (id) => {
     // console.log(product); 
 
     cartItems.push(product);
-    alert(`${product.name} has been added to the cart.`)
+    alert(`${product.name} has been added to the cart.`);
     // console.log(cartItems); 
 
     addToCartUI();
