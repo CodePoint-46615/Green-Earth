@@ -28,8 +28,18 @@ Concise syntax for writing functions through function expression was introduced 
 ---
 #### 5) Explain template literals in ES6. How are they different from string concatenation?
 
+**Template Literals :** Declare a string with the backtick(``)sign. 
+
+**Different Table**
+| Feature | String Concatenation | Template Literals | 
+| ------- | -------------------- | ----------------- |
+| Syntax | Single/Double quotes & need (+) operator | Only Backticks (`) |
+| Expression | Not Supported | ${} | 
+| Multi-line | Requires \n or multiple string | Native Support |
+| Readability | less readable | More readable |  
+
 ---
 ## 🔗 Submission
-- **Live Link :** YOUR_DEPLOYED_URL_HERE  
-- **GitHub Private Repository:** YOUR_REPO_URL_HERE  
+- **Live Link :** [Live Link](https://green-earth-89i.pages.dev/)  
+- **GitHub Private Repository:** [Repository Link](https://github.com/CodePoint-46615/Green-Earth.git)  
 ---
