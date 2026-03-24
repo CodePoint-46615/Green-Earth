@@ -14,9 +14,16 @@
 
 ---
 #### 3) What are arrow functions in ES6?
+Concise syntax for writing functions through function expression was introduced in ES6 (ES2015). They use the => (fat arrow) operator.
 
 ---
 #### 4) How does destructuring assignment work in ES6?
+**Extract values from objects or arrays into distinct variables.**
+***Array: ***
+****const [price, name, quantity] = ['t-shirt', 500, 7];****
+***Object: ***
+****const {price, name, quantity} = { name: 't-shirt', price: '500', quantity: 7 };****
+***These all price, name, and quantities creates a distinct variable and store the respective value from the array or object.*** 
 
 ---
 #### 5) Explain template literals in ES6. How are they different from string concatenation?
