@@ -1,6 +1,8 @@
 #### 1) What is the difference between var, let, and const?
-|----|------|-------|-------|
 | Terms | var | let | const |
+|----|------|-------|-------|
+
+
 
 #### 2) What is the difference between map(), forEach(), and filter()? 
 
